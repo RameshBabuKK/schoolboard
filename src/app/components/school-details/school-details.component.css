@@ -1,0 +1,31 @@
+#list_category {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card {
+    width: 25%;
+    background-color:blueviolet;
+    float: left;
+    border-radius: 8px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+mat-card-content {
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+#slected_category {
+    margin-top: 20px;
+}
+
+#slected_category mat-card{
+    width: 15%;
+    margin: 15px;
+    background-color: rgb(47, 233, 0);
+}

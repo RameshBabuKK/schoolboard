@@ -1,0 +1,18 @@
+<div id="list_category">
+    <mat-card *ngFor = "let category of mainCategory" (click)="loadSchoolCategory(category)">
+        <mat-card-content>{{category | titlecase }}</mat-card-content>
+    </mat-card> 
+</div>
+
+<mat-divider></mat-divider>
+
+<div id="slected_category">
+    <!-- <mat-card *ngFor = "let listCategory of pickedCategory; index as i;" 
+    (click)="loadSelectedCategory(i)">
+    <mat-card-content>{{listCategory  | uppercase}}</mat-card-content>
+    </mat-card> -->
+    <mat-card *ngFor = "let listCategory of pickedCategory; index as i;" (click)=selectedClass(i);>
+            <mat-card-content>{{listCategory  | uppercase}}</mat-card-content> 
+    </mat-card>
+    
+</div>

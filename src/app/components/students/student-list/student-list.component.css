@@ -1,0 +1,32 @@
+table {
+    border: 1px solid rgb(24, 19, 18);
+    width: 100%;
+    background-color: rgb(230, 230, 238);
+}
+
+table > thead > th {
+    background-color: rgb(25, 25, 204);
+    height: 25px;
+    color: #ffffff;
+}
+
+table > tr > td {
+    height: 30px;
+    border: 2px solid rgb(24, 19, 18);
+}
+.textCenter {
+    text-align: center;
+}
+#button_panel {
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 8px; 
+}
+.mat-header-row {
+    background-color: rgb(34, 34, 122);
+}
+.mat-header-cell {
+    font-size: 18px !important;
+    color: #ffffff !important;
+}
