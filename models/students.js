@@ -12,6 +12,6 @@ var StudentListSchema = new mongoose.Schema ({
     mothername:String,
     city: String,
     phone: Number
-}, {collection: 'student'});
+}, {collection: 'students'});
 
 module.exports = mongoose.model('studentlist', StudentListSchema);

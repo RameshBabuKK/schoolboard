@@ -9,6 +9,14 @@ router.get('/', function(req, res, next) {
   res.send('Express RESTful API');
 })
 
+router.get('/editcategory/:id', (req, res, next) => {
+  StudentList.findById(req.params.id, (err, studentrecord) => {
+    if (err)
+      return res.send(err)
+      return res.json(studentrecord)
+  });
+});
+
 router.get('/maincategory', (req, res, next) => {
   SchoolMainCategory.find((err, maincategory) => {
     if (err)

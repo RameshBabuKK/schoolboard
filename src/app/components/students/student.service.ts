@@ -3,12 +3,11 @@ import { HttpClientModule, HttpClient, HttpHeaders, HttpErrorResponse } from '@a
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-const apiUrl = "/api";
+const apiUrl = '/api';
 
 @Injectable({
   providedIn: 'root'
@@ -22,27 +21,33 @@ export class StudentService {
     return this.http.post(apiUrl + '/createstudent', {formData}, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
-    )
+    );
   }
 
   getStudentList (): Observable<any> {
     return this.http.get(apiUrl + '/listallstudent', httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
-    ) 
+    );
   }
 
   getListOfClassStudent(classid): Observable<any> {
     return this.http.get(apiUrl + '/liststudent', { params: { class_id: classid }}).pipe(
       map((this.extractData)),
       catchError(this.handleError)
+    );
+  }
+
+  findStudentRecord(getId): Observable<any> {
+    return this.http.get(apiUrl + '/editstudent/' + getId, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
     )
   }
 
-
   private extractData(res: Response) {
-    let body = res;
-    //console.log(res);
+    const body = res;
+    // console.log(res);
     return body || { };
   }
 

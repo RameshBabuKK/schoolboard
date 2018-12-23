@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./student-create.component.css']
 })
 export class StudentCreateComponent implements OnInit {
-  addstudentForm:any = FormGroup;
-  gender: Array<string> = ["Male", "Female"];
+  addstudentForm: any = FormGroup;
+  gender: Array<string> = ['Male', 'Female'];
   formData$: Observable<any>;
   constructor(
     private studentservice: StudentService,
@@ -30,16 +30,15 @@ export class StudentCreateComponent implements OnInit {
       class_id: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       phone: new FormControl('', Validators.required)
-    })
+    });
   }
 
   addStudent() {
-    
     this.formData$ = this.addstudentForm.value;
     console.log(this.formData$);
     this.studentservice.addStudent(this.formData$)
     .subscribe(res => {
       console.log(res);
-    })
+    });
   }
 }

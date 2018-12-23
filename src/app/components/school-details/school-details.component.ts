@@ -10,7 +10,6 @@ import { RouterModule, Router } from '@angular/router';
   styleUrls: ['./school-details.component.css']
 })
 export class SchoolDetailsComponent implements OnInit {
-  
   groupSelected: String;
   pickedCategory: any;
   mainCategory: any;
@@ -23,29 +22,29 @@ export class SchoolDetailsComponent implements OnInit {
   ngOnInit() {
     this.mainCategory = [];
 
-    //Getting Main category
+    // Getting Main category
     this.schooldetails.getSchoolMainCategory()
     .subscribe(res => {
       this.responseCategory = res[0].category;
       this.mainCategory = this.responseCategory[0];
-      
-      var mainCategoryNames = [];
-      for (let propName in this.mainCategory) {
-        mainCategoryNames.push(propName);
+      const mainCategoryNames = [];
+      for (const propName in this.mainCategory) {
+        if (propName) {
+          mainCategoryNames.push(propName);
+        }
       }
-    
       this.mainCategory = mainCategoryNames;
     }, err => {
       console.log(err);
     });
   }
 
-  //Getting list of particluar category
+  // Getting list of particluar category
   loadSchoolCategory(category) {
     let selectedCategory;
     this.groupSelected = category;
-    let getAllList = this.responseCategory[0];
-      for (let propName in getAllList) {
+    const getAllList = this.responseCategory[0];
+      for (const propName in getAllList) {
         if (propName === category) {
           selectedCategory = getAllList[propName];
         }

@@ -32,7 +32,7 @@
           <div class="divTableCellBlock"><label>Gender</label></div>
           <div class="divTableCellBlock">
             <select class="form-control" formControlName="gender">
-              <option [ngValue]="null">Select</option>
+              <option [ngValue]="">Select</option>
               <option *ngFor="let genderlist of gender" [ngValue]="genderlist">{{genderlist}}</option>
             </select>
           </div>
