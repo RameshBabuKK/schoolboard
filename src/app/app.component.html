@@ -1,12 +1,23 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
-<mat-card>
-  <button class="spacing_btn" color="primary" mat-raised-button [routerLink]="[ '/']">Home</button>
-  <button class="spacing_btn" color="primary" mat-raised-button [routerLink]="['/schooldetails']">List Category</button>
-</mat-card>
-
-<router-outlet></router-outlet>
+<div id="menu">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span>{{ title }}</span>
+            <span>
+                <button 
+                  class="spacing_btn" 
+                  mat-button class="spacing_btn" 
+                  mat-raised-button 
+                  [routerLink]="[ '/']">Home</button>
+            </span>
+            <span>
+              <button 
+                class="spacing_btn" 
+                mat-button class="spacing_btn" 
+                mat-raised-button 
+                [routerLink]="['/schooldetails']">List Category</button>
+            </span>
+          </mat-toolbar-row>
+      </mat-toolbar>
+  </div>
+  
+    <router-outlet></router-outlet>

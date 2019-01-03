@@ -2,20 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
-## NPM Installs
-
-npm add @angular/material rxjs express body-parser core-js hammerjs http-errors jqwidgets-framework mongoose mongoose-multi morgan serve-favicon
-
-## Mongoose
-
-Database - schooldatabase
-
-Collections - maincategory, students
-
 ## Development server
 
-Run `npm start` to start client and dev server. Navigate to client using: `http://localhost:3000/` and cerver: `http://localhost:3000/api`.
-
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

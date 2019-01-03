@@ -7,11 +7,11 @@ var StudentListSchema = new mongoose.Schema ({
     gender: String,
     class_id: Number,
     section: String,
-    admission_date: Date,
+    admission_date: String,
     fathername:String,
     mothername:String,
     city: String,
     phone: Number
-}, {collection: 'students'});
+}, {collection: 'student'});
 
 module.exports = mongoose.model('studentlist', StudentListSchema);

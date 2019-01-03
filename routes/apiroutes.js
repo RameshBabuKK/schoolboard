@@ -1,21 +1,25 @@
 var express = require('express');
 var router = express.Router();
-
+var Users = require('../models/users');
 var SchoolMainCategory = require('../models/maincategory');
 var StudentList = require('../models/students');
+
+
+router.post('/register', function(req, res) {
+  let userData = res.body;
+  let user = new User(userData);
+  user.save().then(regUser => {
+    return res.json(regUser)
+  }).catch(err => {
+    return res.send(err)
+  })
+  
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.send('Express RESTful API');
 })
-
-router.get('/editcategory/:id', (req, res, next) => {
-  StudentList.findById(req.params.id, (err, studentrecord) => {
-    if (err)
-      return res.send(err)
-      return res.json(studentrecord)
-  });
-});
 
 router.get('/maincategory', (req, res, next) => {
   SchoolMainCategory.find((err, maincategory) => {
@@ -68,6 +72,50 @@ router.post('/createstudent', function(req, res) {
     }
   });
 });
+
+router.get('/editstudent/:id', (req, res) => {
+  console.log(req.params.id);
+  StudentList.findById(req.params.id, (err, studentrecord) => {
+    if (err)
+    return res.send(err)
+    return res.json(studentrecord)
+  });
+})
+
+router.post('/editstudent/update/:id', (req, res) => {
+  StudentList.findById(req.params.id, (err, updateData) => {
+    updateData.studentid = req.body.formUpdateData.studentid;
+    updateData.name = req.body.formUpdateData.name;
+    updateData.age = req.body.formUpdateData.age;
+    updateData.gender = req.body.formUpdateData.gender;
+    updateData.class_id = req.body.formUpdateData.class_id;
+    updateData.section = req.body.formUpdateData.section;
+    updateData.admission_date = req.body.formUpdateData.admission_date;
+    updateData.fathername = req.body.formUpdateData.fathername;
+    updateData.mothername = req.body.formUpdateData.mothername;
+    updateData.city = req.body.formUpdateData.city;
+    updateData.phone = req.body.formUpdateData.phone;
+
+    updateData.save().then (updateRec => {
+      return res.json(updateRec)
+    }).catch(err => {
+      return res.send('Record Not updated...' + err)
+    }); 
+  })
+})
+
+router.delete('/liststudent/delete/:id', (req, res) => {
+  console.log(req.params.id);
+
+  StudentList.findByIdAndRemove(req.params.id, req.body, function(err, respose) {
+    if (err) 
+    return res.send (err);
+    return res.json (respose);
+  })
+
+  
+})
+
 
 //Get all Class students
 // router.get('liststudent', function(req, res, next) {

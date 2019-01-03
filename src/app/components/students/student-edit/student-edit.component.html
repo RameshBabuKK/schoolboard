@@ -1,82 +1,65 @@
-<h3>Update registration form</h3>
- <mat-card class="bg_color">
- <form [formGroup]="updatestudentForm">
-  <div class="divTable">
-      <div class="divTableRow">
-          <div class="divTableCell form-group">
-            <div class="divTableCellBlock"><label>Student Id</label></div>
-            <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="studentid" /></div>
-          </div>
-          <div class="divTableCell form-group">
-              <div class="divTableCellBlock"><label>Student name</label></div>
-              <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="name" /></div>
-          </div>
-          <div class="divTableCell form-group">
-              <div class="divTableCellBlock"><label>Student age</label></div>
-              <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="age" /></div>
-          </div>
-        </div>
 
-    <div class="divTableRow">
-      
-      
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Class</label></div>
-          <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="class_id" /></div>
-      </div>
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Section</label></div>
-          <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="section" /></div>
-      </div>
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Gender</label></div>
-          <div class="divTableCellBlock">
-            <select class="form-control" formControlName="gender">
-              <option [ngValue]="">Select</option>
-              <option *ngFor="let genderlist of gender" [ngValue]="genderlist">{{genderlist}}</option>
-            </select>
-          </div>
-      </div>
-    </div>
+<h1>Update student record</h1>
 
-    <div class="divTableRow">
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Admission date</label></div>
-          <div class="divTableCellBlock">
-            <input type="text" class="form-control" formControlName="admission_date" placeholder="dd/mm/yyyy" />
-          </div>
-      </div>
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Father name</label></div>
-          <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="fathername" /></div>
-      </div>
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Mother age</label></div>
-          <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="mothername" /></div>
-      </div>
-    </div>
+  <mat-card>
+    <form action="example-form" [formGroup] = "updateStudentRecordFrom" class="normal-form">
+      <mat-grid-list cols="2" rows='4' rowHeight="300px">
+          <mat-form-field class="hidden_id">
+              <input formControlName="_id" [(ngModel)]="selectedStudentRecord._id" matInput placeholder="Id" >
+            </mat-form-field>
+        <mat-form-field>
+          <input formControlName="studentid" [(ngModel)]="selectedStudentRecord.studentid" matInput placeholder="Student Id" >
+        </mat-form-field>
 
-    <div class="divTableRow">
-        <div class="divTableCell form-group">
-            <div class="divTableCellBlock"><label>City</label></div>
-            <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="city" /></div>
-        </div>
-        <div class="divTableCell form-group">
-            <div class="divTableCellBlock"><label>Phone</label></div>
-            <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="phone" /></div>
-        </div>
-        <div class="text_right">
+        <mat-form-field>
+          <input formControlName="name" [(ngModel)]="selectedStudentRecord.name" matInput placeholder="Student name" >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Student Age" [(ngModel)]="selectedStudentRecord.age" formControlName="age">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Student class"  [(ngModel)]="selectedStudentRecord.class_id" formControlName="class_id">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Class section"  [(ngModel)]="selectedStudentRecord.section" formControlName="section">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select name="item" formControlName="gender"  [(ngModel)]="selectedStudentRecord.gender" placeholder="Select Gender">
+              <ng-container *ngFor="let item of genderitems">
+                  <mat-option value="{{ item }}">{{ item }}</mat-option>
+              </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Reg. Date"  [(ngModel)]="selectedStudentRecord.admission_date" formControlName="admission_date" [matDatepicker]="picker"> <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Father Name"  [(ngModel)]="selectedStudentRecord.fathername" formControlName="fathername">
+        </mat-form-field>
         
-            <button 
-            class="form-control" 
-            mat-raised-button 
-            color="primary" 
-            [disabled]='updatestudentForm.invalid'
-            (click)="updateStudentRecord()">Add</button>
-          
-      </div>
-    </div>
-</div>
-</form>
-</mat-card>
-<div class="text_right"><i>* All fields are required</i></div>
+        <mat-form-field>
+          <input matInput placeholder="Mother Name"  [(ngModel)]="selectedStudentRecord.mothername" formControlName="mothername">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput placeholder="City"  [(ngModel)]="selectedStudentRecord.city" formControlName="city">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Contact number"  [(ngModel)]="selectedStudentRecord.phone" formControlName="phone">
+        </mat-form-field>
+      </mat-grid-list>
+      
+        
+
+    </form>
+    <button 
+    mat-raised-button 
+    [disabled] = 'updateStudentRecordFrom.untouched'
+    color="primary" 
+    (click)="updateStudentRecord(updateStudentRecordFrom)">Update</button>
+
+  </mat-card> 

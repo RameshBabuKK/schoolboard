@@ -11,8 +11,11 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 const studentroutes: Routes = [
   { path: 'listallstudent', component: StudentListComponent},
+  { path: 'liststudent', component: StudentListComponent},
   { path: 'liststudent/:id', component: StudentListComponent},
   { path: 'editstudent/:id', component: StudentEditComponent},
+  { path: 'editstudent/update/:id', component: StudentEditComponent},
+  { path: 'liststudent/delete/:id', component: StudentListComponent},
   { path: 'createstudent', component: StudentCreateComponent}
 ];
 

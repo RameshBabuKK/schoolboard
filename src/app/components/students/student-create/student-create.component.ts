@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { StudentService } from './../student.service';
 import { Observable } from 'rxjs';
+import {ToastsManager} from 'ng6-toastr/ng2-toastr';
+import { ActivatedRoute, Router, ParamMap  } from '@angular/router';
 
 @Component({
   selector: 'app-student-create',
@@ -13,9 +15,13 @@ export class StudentCreateComponent implements OnInit {
   gender: Array<string> = ['Male', 'Female'];
   formData$: Observable<any>;
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastsManager,
+    private vcr: ViewContainerRef,
     private studentservice: StudentService,
     private _fb: FormBuilder
-    ) { }
+    ) { this.toastr.setRootViewContainerRef(vcr); }
 
   ngOnInit() {
     this.addstudentForm = this._fb.group({
@@ -38,7 +44,10 @@ export class StudentCreateComponent implements OnInit {
     console.log(this.formData$);
     this.studentservice.addStudent(this.formData$)
     .subscribe(res => {
-      console.log(res);
+      this.toastr.success( 'Student records added successfully', 'Added...!' );
+      setTimeout(() => {
+        this.router.navigate(['/schooldetails']);
+      }, 2000);
     });
   }
 }

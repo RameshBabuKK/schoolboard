@@ -3,6 +3,7 @@ import { HttpClientModule, HttpClient, HttpHeaders, HttpErrorResponse } from '@a
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -38,11 +39,25 @@ export class StudentService {
     );
   }
 
-  findStudentRecord(getId): Observable<any> {
-    return this.http.get(apiUrl + '/editstudent/' + getId, httpOptions).pipe(
+  getStudentRecord (studentid: string): Observable<any> {
+    return this.http.get(apiUrl + '/editstudent/' +  studentid, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
-    )
+    );
+  }
+
+  updateRecord (formUpdateData: any): Observable<any> {
+    return this.http.post(apiUrl + '/editstudent/update/' +  formUpdateData._id, {formUpdateData}, httpOptions).pipe (
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  deleteStudentRecord (recId): Observable<any> {
+    return this.http.delete(apiUrl + '/liststudent/delete/' + recId, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
   }
 
   private extractData(res: Response) {
@@ -64,5 +79,5 @@ export class StudentService {
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
-  };
+  }
 }

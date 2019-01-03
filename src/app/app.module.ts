@@ -11,14 +11,16 @@ import { SchooldetailsService } from './schooldetails.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { StudentModule } from './components/students/student.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MynotificationModule } from './mynotification.module';
+import { ToastModule } from 'ng6-toastr/ng2-toastr';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home'},
   { path: 'home', component: HomeComponent },
   { path: 'schooldetails', component: SchoolDetailsComponent },
+  { path: 'register', component: HomeComponent},
   { path: 'students', loadChildren: './components/students/student.module#StudentModule'}
-]
+];
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ const routes: Routes = [
     MaterialModule,
     HttpClientModule,
     StudentModule,
+    MynotificationModule,
     BrowserAnimationsModule,
+    ToastModule.forRoot(),
     RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [

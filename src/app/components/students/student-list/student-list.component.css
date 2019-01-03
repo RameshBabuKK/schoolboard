@@ -30,3 +30,9 @@ table > tr > td {
     font-size: 18px !important;
     color: #ffffff !important;
 }
+.hideFooter{
+    display: none;
+}
+.mat-footer-row .mat-footer-row {
+    justify-content: center;
+}

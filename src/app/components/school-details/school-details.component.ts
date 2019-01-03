@@ -10,6 +10,7 @@ import { RouterModule, Router } from '@angular/router';
   styleUrls: ['./school-details.component.css']
 })
 export class SchoolDetailsComponent implements OnInit {
+
   groupSelected: String;
   pickedCategory: any;
   mainCategory: any;
@@ -27,6 +28,7 @@ export class SchoolDetailsComponent implements OnInit {
     .subscribe(res => {
       this.responseCategory = res[0].category;
       this.mainCategory = this.responseCategory[0];
+
       const mainCategoryNames = [];
       for (const propName in this.mainCategory) {
         if (propName) {
@@ -43,7 +45,9 @@ export class SchoolDetailsComponent implements OnInit {
   loadSchoolCategory(category) {
     let selectedCategory;
     this.groupSelected = category;
+    console.log(this.responseCategory);
     const getAllList = this.responseCategory[0];
+    console.log(this.pickedCategory);
       for (const propName in getAllList) {
         if (propName === category) {
           selectedCategory = getAllList[propName];
@@ -53,6 +57,7 @@ export class SchoolDetailsComponent implements OnInit {
   }
 
   selectedClass(index) {
+    console.log(index);
     if (index !== 0) {
       this.router.navigate(['/liststudent', index]);
     } else {
