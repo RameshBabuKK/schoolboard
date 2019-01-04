@@ -1,13 +1,10 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router, ParamMap  } from '@angular/router';
 import { StudentService } from './../student.service';
 import { Location } from '@angular/common';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ToastsManager } from 'ng6-toastr/ng2-toastr';
-import { SchoolDetailsComponent } from '../../school-details/school-details.component';
-
 
 export interface StudentDataTableListItem {
   name: String;
@@ -20,11 +17,11 @@ export interface StudentDataTableListItem {
 }
 
 @Component({
-  providers: [ SchoolDetailsComponent ],
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.css']
 })
+
 export class StudentListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -36,7 +33,6 @@ export class StudentListComponent implements OnInit {
   listStudent: any = new MatTableDataSource<StudentDataTableListItem>();
 
   constructor(
-    private schooldetailscomponent: SchoolDetailsComponent,
     private studentservice: StudentService,
     private route: ActivatedRoute,
     private router: Router,
@@ -56,15 +52,6 @@ export class StudentListComponent implements OnInit {
     if (this.classid) {
       const rr = this.studentservice.getListOfClassStudent(this.classid)
       .subscribe(res => {
-        // console.log(res);
-        // let studentArray = res.map(item => {
-        //   return {
-        //     key: item._id,
-        //     studentData: item
-        //   }
-        // });
-        // console.log(studentArray);
-
         this.studentList$ = res;
         this.dataSource.data = this.studentList$;
         this.listStudent = new MatTableDataSource(this.dataSource.data);
@@ -74,16 +61,6 @@ export class StudentListComponent implements OnInit {
     } else {
       const rr = this.studentservice.getStudentList()
         .subscribe(res => {
-          // console.log(res);
-          // let studentArray = res.map(item => {
-          //   return {
-          //     key: item._id,
-          //     studentData: item
-          //   }
-          // });
-          // console.log(studentArray);
-
-
           this.studentList$ = res;
           this.dataSource.data = this.studentList$;
           this.listStudent = new MatTableDataSource(this.dataSource.data);
@@ -103,14 +80,12 @@ export class StudentListComponent implements OnInit {
     }
 
     deleteRecord(deleteId) {
-      console.log(deleteId);
-      this.studentservice.deleteStudentRecord(deleteId).subscribe( res => {
+      const deleteSubscription = this.studentservice.deleteStudentRecord(deleteId).subscribe( res => {
         this.toastr.success( 'Record deleted successfully...', 'Deleted...');
-        console.log(res);
-        console.log(res.class_id);
         setTimeout(() => {
           this.router.navigate(['/schooldetails']);
         }, 2000);
       });
+      deleteSubscription.unsubscribe();
     }
 }

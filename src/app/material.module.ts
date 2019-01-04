@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {
+import { 
   MatInputModule,
   MatDividerModule,
   MatPaginatorModule,
@@ -19,7 +19,7 @@ import {
   MatGridListModule,
   MatDialogModule,
   MatToolbarModule} from '@angular/material';
-
+ 
 @NgModule({
   declarations: [],
   imports: [

@@ -58,4 +58,5 @@ export class StudentEditComponent implements OnInit {
     }, 2000);
     });
   }
+
 }

@@ -1,82 +1,85 @@
-<h3>Registration form</h3>
- <mat-card class="bg_color">
- <form [formGroup]="addstudentForm">
-  <div class="divTable">
-      <div class="divTableRow">
-          <div class="divTableCell form-group">
-            <div class="divTableCellBlock"><label>Student Id</label></div>
-            <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="studentid" /></div>
-          </div>
-          <div class="divTableCell form-group">
-              <div class="divTableCellBlock"><label>Student name</label></div>
-              <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="name" /></div>
-          </div>
-          <div class="divTableCell form-group">
-              <div class="divTableCellBlock"><label>Student age</label></div>
-              <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="age" /></div>
-          </div>
-        </div>
-
-    <div class="divTableRow">
-      
-      
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Class</label></div>
-          <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="class_id" /></div>
-      </div>
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Section</label></div>
-          <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="section" /></div>
-      </div>
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Gender</label></div>
-          <div class="divTableCellBlock">
-            <select class="form-control" formControlName="gender">
-              <option [ngValue]="">Select</option>
-              <option *ngFor="let genderlist of gender" [ngValue]="genderlist">{{genderlist}}</option>
-            </select>
-          </div>
-      </div>
-    </div>
-
-    <div class="divTableRow">
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Admission date</label></div>
-          <div class="divTableCellBlock">
-            <input type="text" class="form-control" formControlName="admission_date" placeholder="dd/mm/yyyy" />
-          </div>
-      </div>
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Father name</label></div>
-          <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="fathername" /></div>
-      </div>
-      <div class="divTableCell form-group">
-          <div class="divTableCellBlock"><label>Mother age</label></div>
-          <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="mothername" /></div>
-      </div>
-    </div>
-
-    <div class="divTableRow">
-        <div class="divTableCell form-group">
-            <div class="divTableCellBlock"><label>City</label></div>
-            <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="city" /></div>
-        </div>
-        <div class="divTableCell form-group">
-            <div class="divTableCellBlock"><label>Phone</label></div>
-            <div class="divTableCellBlock"><input type="text" class="form-control" formControlName="phone" /></div>
-        </div>
-        <div class="text_right">
-        
-            <button 
-            class="form-control" 
-            mat-raised-button 
-            color="primary" 
-            [disabled]='addstudentForm.invalid'
-            (click)="addStudent()">Add</button>
-          
-      </div>
-    </div>
+<div>
+    <h3>Registration form</h3>
 </div>
+<div class="container-fluid">
+ <form [formGroup]="addstudentForm">
+
+    <div class="col-lg-12">
+        <div class="col-lg-3 col-md-4">
+            <div class="row form-group">
+                    <label>Student Id</label>
+                    <input type="text" class="form-control" formControlName="studentid" />
+            </div>
+            <div class="row form-group">
+                    <label>Class</label>
+                    <input type="text" class="form-control" formControlName="class_id" />
+            </div>
+            <div class="row form-group">
+                    <label>Section</label>
+                    <input type="text" class="form-control" formControlName="section" />
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4">
+            <div class="row form-group">
+                    <label>Student name</label>
+                    <input type="text" class="form-control" formControlName="name" />
+            </div>
+            <div class="row form-group">
+                    <label>Gender</label>
+                    <select class="form-control" formControlName="gender">
+                      <option [ngValue]="">Select</option>
+                      <option *ngFor="let genderlist of gender" [ngValue]="genderlist">{{genderlist}}</option>
+                    </select>
+            </div>
+            <div class="row form-group">
+                    <label>Admission date</label>
+                    <input type="text" class="form-control" formControlName="admission_date" placeholder="dd/mm/yyyy" />
+                    
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4">
+            <div class="row form-group">
+                    <label>Student age</label>
+                    <input type="text" class="form-control" formControlName="age" />
+            </div>
+            <div class="row form-group">
+                    <label>Father name</label>
+                    
+                    <input type="text" class="form-control" formControlName="fathername" />
+            </div>
+            <div class="row form-group">
+                    <label>Mother age</label>
+                    <input type="text" class="form-control" formControlName="mothername" />
+                    
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4">
+                <div class="row form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" formControlName="city" />
+                </div>
+                <div class="row form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" formControlName="phone" />
+                </div>
+                <div class="row form-group">
+                <div class="col-lg-1 text_left">
+                    <label>&nbsp;</label>
+                    <button 
+                    class="form-control" 
+                    mat-raised-button 
+                    color="primary" 
+                    [disabled]='addstudentForm.invalid'
+                    (click)="addStudent()">Add</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+            <div class="col-lg-12 text_right">
+                    <span><i>* All fields are required</i></span>
+                </div>
+        </div>
 </form>
-</mat-card>
-<div class="text_right"><i>* All fields are required</i></div>
+</div>

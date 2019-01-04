@@ -7,7 +7,7 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-const apiUrl = '/api';
+const apiUrl = "/api";
 
 @Injectable({
   providedIn: 'root'
@@ -17,18 +17,19 @@ export class SchooldetailsService {
 
   constructor(private http: HttpClient) { }
 
+  
   getSchoolMainCategory(): Observable<any> {
     return this.http.get(apiUrl + '/maincategory', httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
-    );
+    ) 
   }
 
 
 
   private extractData(res: Response) {
-    const body = res;
-    // console.log(res);
+    let body = res;
+    //console.log(res);
     return body || { };
   }
 
@@ -45,6 +46,6 @@ export class SchooldetailsService {
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
-  }
+  };
 
 }

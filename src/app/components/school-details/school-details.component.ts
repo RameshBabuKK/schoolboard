@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { SchooldetailsService } from 'src/app/schooldetails.service';
-import { forEach } from '@angular/router/src/utils/collection';
 import { RouterModule, Router } from '@angular/router';
 
 
@@ -10,7 +9,6 @@ import { RouterModule, Router } from '@angular/router';
   styleUrls: ['./school-details.component.css']
 })
 export class SchoolDetailsComponent implements OnInit {
-
   groupSelected: String;
   pickedCategory: any;
   mainCategory: any;
@@ -28,7 +26,6 @@ export class SchoolDetailsComponent implements OnInit {
     .subscribe(res => {
       this.responseCategory = res[0].category;
       this.mainCategory = this.responseCategory[0];
-
       const mainCategoryNames = [];
       for (const propName in this.mainCategory) {
         if (propName) {
@@ -63,6 +60,5 @@ export class SchoolDetailsComponent implements OnInit {
     } else {
       this.router.navigate(['/listallstudent']);
     }
-
   }
 }
